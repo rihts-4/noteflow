@@ -50,6 +50,22 @@ COPY . .
 RUN pnpm run build
 
 ################################################################################
+# Create a development stage that runs in watch mode
+FROM deps AS dev
+
+# Set development environment
+ENV NODE_ENV development
+
+# Copy the rest of the source files into the image.
+COPY . .
+
+# Expose the port that the application listens on.
+EXPOSE 3000
+
+# Run the application in development mode.
+CMD pnpm dev
+
+################################################################################
 # Create a new stage to run the application with minimal runtime dependencies
 # where the necessary files are copied from the build stage.
 FROM base AS final
