@@ -49,3 +49,5 @@ public/
 
 # Git
 .git/
+
+*.txt
